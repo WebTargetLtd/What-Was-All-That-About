@@ -59,7 +59,7 @@ pub fn say(message: &str) -> Result<(), std::io::Error> {
     Ok(())
 }
 
-pub fn announce() {
+pub fn announce(preload: Option<HashMap<&str, String>>) {
 
     // First we update all information of our `System` struct.
     let mut sys = System::new_all();
@@ -67,8 +67,16 @@ pub fn announce() {
 
     let num_cores = num_cpus::get();
     let num_physical_cores = num_cpus::get_physical();
-
     let mut infomap: HashMap<&str, String> = HashMap::new();
+    
+    if preload.is_some() {
+        let preload = preload.unwrap();
+        infomap.extend(preload.clone());
+        for (key, value) in preload.iter() {
+            println!("{}: {}", key, value);
+        }
+    }
+  
     infomap.insert("System Name", System::name().unwrap());
     infomap.insert("System kernel version", System::kernel_version().unwrap());
     infomap.insert("System OS version", System::os_version().unwrap());
