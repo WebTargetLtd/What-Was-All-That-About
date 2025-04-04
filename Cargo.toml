@@ -1,0 +1,10 @@
+[package]
+name = "what_was_all_that_about"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+chrono = "0.4.40"
+console = "0.15.11"
+num_cpus = "1.16.0"
+sysinfo = "0.34.2"
