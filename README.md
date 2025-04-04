@@ -1,5 +1,4 @@
-# What was all that about?
-
+# wolves-cli-helper
 A utility crate we use iternally at WebTarget to print formatted output and gather metrics in our Rust projects.
 
 Timer macros 
