@@ -39,7 +39,6 @@ wolves-cli-helper = { git = "https://github.com/WebTargetLtd/wolves-cli-helper" 
 wolves-cli-helper = { path = "../wolves-cli-helper" }
 ```
 
-Here's an example output:
+In Use:
 
-![Example Usage](image.png)
-
+![alt text](images/cli.png)
