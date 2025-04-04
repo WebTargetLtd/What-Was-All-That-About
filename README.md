@@ -29,3 +29,12 @@ An example usage that uses console's style:
     ).as_str())?;
 
 ```
+Add a reference to your current project, either for GitHub, or a path based reference. E.g.
+
+```toml
+wolves-cli-helper = { git = "https://github.com/WebTargetLtd/wolves-cli-helper" }
+
+# or
+
+wolves-cli-helper = { path = "../wolves-cli-helper" }
+```
