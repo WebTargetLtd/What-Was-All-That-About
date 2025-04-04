@@ -1,5 +1,5 @@
 [package]
-name = "what_was_all_that_about"
+name = "wolves-cli-helper" 
 version = "0.1.0"
 edition = "2024"
 

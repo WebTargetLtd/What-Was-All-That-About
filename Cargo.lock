@@ -315,16 +315,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "what_was_all_that_about"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "console",
- "num_cpus",
- "sysinfo",
-]
-
-[[package]]
 name = "winapi"
 version = "0.3.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -530,3 +520,13 @@ name = "windows_x86_64_msvc"
 version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec"
+
+[[package]]
+name = "wolves-cli-helper"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "console",
+ "num_cpus",
+ "sysinfo",
+]

@@ -48,7 +48,6 @@
  *
  * ## Example
  * ```rust
- * use utilities::timers::{Timer, Timers, TC, TE, TR, TD};
  *
  * fn main() {
  *     // Create a new timer
@@ -104,10 +103,10 @@ impl Default for Timer {
     }
 }
 
-#[derive()]pub struct Timers {
+#[derive()]
+pub struct Timers {
     pub timer: HashMap<String, Timer>,
 }
-
 impl Timers {
     pub fn new(timer_name: String) -> Self {
         let new_timer: Timer = Timer::new();
@@ -151,11 +150,17 @@ impl Timers {
      
     }
 }
-
+impl Default for Timers {
+    fn default() -> Self {
+        Self {
+            timer: HashMap::new(),
+        }
+    }
+}
 // Shorthand for creating a Timer.
 #[macro_export]
 macro_rules! TC {
-    ($e:expr) => {crate::utilities::timers::Timers::new(String::from($e))};
+    ($e:expr) => { wolves_cli_helper::timers::Timers::new(String::from($e)) };
 }
 
 // Shorthand for ending a Timer.
