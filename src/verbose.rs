@@ -63,9 +63,8 @@ pub fn say(message: &str) -> Result<(), std::io::Error> {
 pub fn announce(preload: Option<HashMap<String, String>>) {
 
     let sys_info = SystemInfo::new();
- 
     paddingline();
-    let mut infomap = SystemInfo::new_to_hashmap(sys_info);
+    let mut infomap = sys_info.to_hashmap();
         if preload.is_some() {
         let preload = preload.unwrap();
         infomap.extend(preload.clone());

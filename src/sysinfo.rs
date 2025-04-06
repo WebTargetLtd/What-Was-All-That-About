@@ -49,37 +49,38 @@ impl SystemInfo {
                 .collect(),
         }
     }
-pub fn new_to_hashmap(sys_info: Self) -> HashMap<String, String> {
-    let mut infomap: HashMap<String, String> = HashMap::new();
-    infomap.insert("System Name".to_string(), sys_info.system_name);
-    infomap.insert("System kernel version".to_string(), sys_info.kernel_version);
-    infomap.insert("System OS version".to_string(), sys_info.os_version);
-    infomap.insert("Hostname".to_string(), sys_info.hostname);
-    infomap.insert("CPU Cores".to_string(), sys_info.cpu_cores.to_string());
-    infomap.insert(
-        "CPU Virtual Cores".to_string(),
-        sys_info.cpu_virtual_cores.to_string(),
-    );
-    infomap.insert("Total Memory".to_string(), sys_info.total_memory.to_string());
-    infomap.insert("Used Memory".to_string(), sys_info.used_memory.to_string());
-    infomap.insert("Total Swap".to_string(), sys_info.total_swap.to_string());
-    infomap.insert("Used Swap".to_string(), sys_info.used_swap.to_string());
 
-    for disk in &sys_info.disks {
-        if let Some(disk_type) = &disk.disk_type {
-            infomap.insert("Disk Type".to_string(), disk_type.clone());
+    pub fn to_hashmap(&self) -> std::collections::HashMap<String, String> {
+        let mut infomap: HashMap<String, String> = HashMap::new();
+    
+        infomap.insert("System Name".to_string(), self.system_name.clone());
+        infomap.insert("System kernel version".to_string(), self.kernel_version.clone());
+        infomap.insert("System OS version".to_string(), self.os_version.clone());
+        infomap.insert("Hostname".to_string(), self.hostname.clone());
+        infomap.insert("CPU Cores".to_string(), self.cpu_cores.to_string());
+        infomap.insert(
+            "CPU Virtual Cores".to_string(),
+            self.cpu_virtual_cores.to_string(),
+        );
+        infomap.insert("Total Memory".to_string(), self.total_memory.to_string());
+        infomap.insert("Used Memory".to_string(), self.used_memory.to_string());
+        infomap.insert("Total Swap".to_string(), self.total_swap.to_string());
+        infomap.insert("Used Swap".to_string(), self.used_swap.to_string());
+    
+        for disk in &self.disks {
+            if let Some(disk_type) = &disk.disk_type {
+                infomap.insert("Disk Type".to_string(), disk_type.clone());
+            }
+            if let Some(file_system) = &disk.file_system {
+                infomap.insert("File System".to_string(), file_system.clone());
+            }
+            if let Some(free_space) = &disk.free_space {
+                infomap.insert("Free Space".to_string(), free_space.clone());
+            }
         }
-        if let Some(file_system) = &disk.file_system {
-            infomap.insert("File System".to_string(), file_system.clone());
-        }
-        if let Some(free_space) = &disk.free_space {
-            infomap.insert("Free Space".to_string(), free_space.clone());
-        }
+    
+        infomap
     }
-
-    infomap
-}
-
     pub fn display(&self) {
         println!("System Name: {}", self.system_name);
         println!("Kernel Version: {}", self.kernel_version);
