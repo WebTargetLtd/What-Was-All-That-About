@@ -1,54 +1,13 @@
-/*!
- * # Verbose Utilities Module
- *
- * This module provides utility functions for displaying verbose output
- * in the terminal. It is designed to enhance the user experience by
- * providing formatted and styled messages, system information, and
- * configuration details.
- *
- * ## Features
- * - **say(message: String)**: Prints a styled message to the terminal with a timestamp.
- * - **announce()**: Displays detailed system information, including CPU, memory, swap, and disk details, as well as the configuration file being used.
- * - **writeheaderlines(lines: HashMap<&str, String>)**: Formats and aligns key-value pairs for terminal output.
- * - **paddingline()**: Prints a styled separator line for better readability in the terminal.
- *
- * ## Dependencies
- * - `chrono`: For generating timestamps.
- * - `console`: For styling terminal output.
- * - `sysinfo`: For retrieving system information such as CPU, memory, and disk details.
- *
- * ## Usage
- * This module is intended to be used in applications where detailed system
- * information and verbose output are required, such as debugging or logging
- * utilities.
- *
- * ## Example
- * 
- * use utilities::verbose::{say, announce};
- *
- * fn main() {
- *     say("Starting the application...".to_string()).unwrap();
- *     announce();
- * }
- * 
- */
-
-use std::collections::HashMap;
 use chrono::Utc;
-use console::{Term, style};
-
-use crate::sysinfo::SystemInfo;
-
-// use super::config::config::report_configfile;
+use console::{style, Term};
 
 ///
 /// Prints a styled message to the terminal with a timestamp.
-/// 
+///
 /// ```rust
 ///     say(format!("X is : {}", x).as_str()).unwrap();
-/// 
 /// ```
-/// 
+///
 pub fn say(message: &str) -> Result<(), std::io::Error> {
     let term = Term::stdout();
     let now = Utc::now();
@@ -60,59 +19,19 @@ pub fn say(message: &str) -> Result<(), std::io::Error> {
     Ok(())
 }
 
-pub fn announce(preload: Option<HashMap<String, String>>) {
-
-    let sys_info = SystemInfo::new();
-    paddingline();
-    let mut infomap = sys_info.to_hashmap();
-        if preload.is_some() {
-        let preload = preload.unwrap();
-        infomap.extend(preload.clone());
-        for (key, value) in preload.iter() {
-            println!("{}: {}", key, value);
-        }
-    }
-    writeheaderlines(infomap).unwrap();
-    paddingline();
-}
-
-/// Iterates through a HashMap and writes the key-value pairs to the terminal.
-/// ```rust
-/// 
-///     // Example usage:
-///     let mut infomap: HashMap<&str, String> = HashMap::new();
-///     infomap.insert("Using .ini file", report_configfile());
-///     infomap.insert("System Name", System::name().unwrap());
-///     infomap.insert("System kernel version", System::kernel_version().unwrap());
-///     infomap.insert("System OS version", System::os_version().unwrap());
-///     infomap.insert("Hostname", System::host_name().unwrap());
-/// 
-///     // Call the function with our HashMap
-///     writeheaderlines(infomap).unwrap();
-/// ```
-/// 
-fn writeheaderlines(lines: HashMap<String, String>) -> Result<(), std::io::Error> {
-    let term = Term::stdout();
-    let max_key_length = lines.keys().map(|key| key.len()).max().unwrap_or(0);
-
-    for line in lines {
-        let padded_key = format!("{:width$}", line.0, width = max_key_length);
-
-        let keystyle = style(padded_key).color256(208);
-
-        let valstyle = style(format!("{}", line.1)).green();
-        term.write_line(format!("{} :: {}", keystyle, valstyle).as_str())?
-    }
-    Ok(())
-}
 /// Writes a padding line to the terminal, preceded and followed by a blank line.
-pub fn paddingline() {
-    let blankline = "";
-    let line = style("-----------------------------------------------------------------").blue();
+pub fn paddingline() -> Result<(), std::io::Error> {
 
-    let term = Term::stdout();
+    if let Some((width, _)) = term_size::dimensions() {
+        let line = style("-".repeat(width)).magenta();
+        
+        let blankline = ""; //  " ".repeat(width);
+        let term = Term::stdout();
 
-    term.write_line(blankline).unwrap();
-    term.write_line(format!("{}", line).as_str()).unwrap();
-    term.write_line(blankline).unwrap();
+        term.write_line(blankline)?;
+        term.write_line(format!("{}", line).as_str())?;
+        term.write_line(blankline)?
+    
+    } 
+    Ok(())
 }
