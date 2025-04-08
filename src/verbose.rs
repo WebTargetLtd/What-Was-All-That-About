@@ -4,10 +4,6 @@ use console::{style, Term};
 ///
 /// Prints a styled message to the terminal with a timestamp.
 ///
-/// ```rust
-///     say(format!("X is : {}", x).as_str()).unwrap();
-/// ```
-///
 pub fn say(message: &str) -> Result<(), std::io::Error> {
     let term = Term::stdout();
     let now = Utc::now();

@@ -46,25 +46,6 @@
  * - **TR!**: Shorthand for calculating the rate of operations for a timer.
  * - **TD!**: Shorthand for retrieving the duration of a timer.
  *
- * ## Example
- * ```rust
- *
- * fn main() {
- *     // Create a new timer
- *     let mut timers = TC!("example_timer");
- *
- *     // Simulate some work
- *     std::thread::sleep(std::time::Duration::from_millis(500));
- *
- *     // End the timer and calculate the duration
- *     let duration = TE!("example_timer", timers);
- *     println!("Duration: {} ms", duration);
- *
- *     // Calculate the rate of operations
- *     let rate = TR!("example_timer", timers, 100);
- *     println!("Rate: {} ops/sec", rate);
- * }
- * ```
  */
 
 use chrono::{DateTime, Local};
