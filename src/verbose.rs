@@ -31,3 +31,9 @@ pub fn paddingline() -> Result<(), std::io::Error> {
     } 
     Ok(())
 }
+
+// Shorthand for creating a Timer.
+#[macro_export]
+macro_rules! say {
+    ($e:expr) => { wolves_cli_helper::verbose::say($e).unwrap() };
+}
