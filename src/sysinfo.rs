@@ -3,13 +3,14 @@ use console::style;
 use std::{collections::HashMap, fmt};
 use sysinfo::{Disks, System};
 
-#[derive(Debug)]
+#[derive(Debug, serde::Deserialize)]
 pub struct SystemDisks {
     pub disk_type: Option<String>,
     pub file_system: Option<String>,
     pub free_space: Option<String>,
 }
 
+#[derive(serde::Deserialize)]
 pub struct SystemInfo {
     pub system_name: String,
     pub kernel_version: String,
