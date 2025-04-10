@@ -1,16 +1,20 @@
+
 use crate::verbose::say;
 use console::style;
 use std::{collections::HashMap, fmt};
 use sysinfo::{Disks, System};
 
-#[derive(Debug, serde::Deserialize)]
+#[cfg(feature = "serde_support")]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug)]
 pub struct SystemDisks {
     pub disk_type: Option<String>,
     pub file_system: Option<String>,
     pub free_space: Option<String>,
 }
 
-#[derive(serde::Deserialize)]
+#[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize, Debug))]
 pub struct SystemInfo {
     pub system_name: String,
     pub kernel_version: String,

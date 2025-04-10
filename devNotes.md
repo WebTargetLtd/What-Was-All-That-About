@@ -1,5 +1,7 @@
 # DevNotes
 
+### Thu 10 Apr 2025
+Added a Serialisation feature to the SystemInfo crate.
 
 ### Wed 09 Apr 2025
 Macro'd the 'say' function, to avoid the tedious 'unwrap' thing.
