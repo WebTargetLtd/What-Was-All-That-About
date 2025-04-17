@@ -1,5 +1,8 @@
 # DevNotes
 
+### Wed 16 Apr 2025
+SystemInfo struct is now cloneable
+
 ### Thu 10 Apr 2025
 Added a Serialisation feature to the SystemInfo crate.
 

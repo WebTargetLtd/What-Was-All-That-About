@@ -8,14 +8,14 @@ use sysinfo::{Disks, System};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug)]
-#[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize, Clone))]
 pub struct SystemDisks {
     pub disk_type: Option<String>,
     pub file_system: Option<String>,
     pub free_space: Option<String>,
 }
 
-#[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize, Clone))]
 pub struct SystemInfo {
     pub system_name: String,
     pub kernel_version: String,
