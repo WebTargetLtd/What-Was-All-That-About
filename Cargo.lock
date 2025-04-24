@@ -561,4 +561,15 @@ dependencies = [
  "serde",
  "sysinfo",
  "term_size",
+ "wolves-rust-defs",
+]
+
+[[package]]
+name = "wolves-rust-defs"
+version = "0.1.0"
+dependencies = [
+ "console",
+ "num_cpus",
+ "serde",
+ "sysinfo",
 ]

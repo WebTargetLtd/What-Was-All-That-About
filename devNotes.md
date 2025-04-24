@@ -1,5 +1,9 @@
 # DevNotes
 
+### Thu 24 Apr 2025
+
+- Getting a little too far away from the remit of cli-helper, so some of the definitions are now part of the `wolves-rust-defs` project.
+
 ### Tue 22 Apr 2025
 - chore: update dev notes for version 0.2.0 and recent changes
 - Documented version bump to 0.2.0.
